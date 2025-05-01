@@ -1,10 +1,14 @@
 package com.sorting.visualizer;
 
-/**
- * Hello world!
- */
+import javax.swing.SwingUtilities;
+
+import com.sorting.visualizer.frontend.SortingVisualizer;
+
 public class App {
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
-    }
+  public static void main(String[] args) {
+    SwingUtilities.invokeLater(() -> {
+      SortingVisualizer app = new SortingVisualizer();
+      app.setVisible(true);
+    });
+  }
 }

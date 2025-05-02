@@ -1,13 +1,16 @@
 package com.sorting.visualizer.frontend.homepage;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import com.sorting.visualizer.frontend.homepage.components.AlgorithmComboBox;
 import com.sorting.visualizer.frontend.homepage.components.AlgorithmLabel;
@@ -15,12 +18,17 @@ import com.sorting.visualizer.frontend.homepage.components.ArraySizeField;
 import com.sorting.visualizer.frontend.homepage.components.ArraySizeLabel;
 import com.sorting.visualizer.frontend.homepage.components.GenerateArrayButton;
 import com.sorting.visualizer.frontend.homepage.components.HomePageHeader;
-import com.sorting.visualizer.frontend.homepage.components.GenerateArrayButton;
+import com.sorting.visualizer.frontend.sortdisplay.SortDisplay;
 
 public class HomePage extends JPanel {
   private ArraySizeField arraySizeField;
+  private SortDisplay sortDisplay;
 
-  public HomePage() {
+  private JFrame parentFrame;
+
+  public HomePage(JFrame parentFrame) {
+    this.parentFrame = parentFrame;
+
     initializeHomePage();
   }
 
@@ -53,12 +61,20 @@ public class HomePage extends JPanel {
   private void addStartButton() {
     GenerateArrayButton generateArrayButton = new GenerateArrayButton("Generate Array");
     generateArrayButton.addGenerateArrayListener(e -> onGenerateButtonClicked());
-    
+
     add(generateArrayButton, createConstraints(0, 3, 2));
   }
 
   private void onGenerateButtonClicked() {
-    // TODO 
+    int arraySize = arraySizeField.getArraySize();
+    sortDisplay = new SortDisplay(arraySize, "temp", parentFrame);
+
+    SwingUtilities.invokeLater(() -> {
+      parentFrame.getContentPane().removeAll();
+      parentFrame.getContentPane().add(sortDisplay);
+      parentFrame.revalidate();
+      parentFrame.repaint();
+    });
   }
 
   private GridBagConstraints createConstraints(int x, int y) {

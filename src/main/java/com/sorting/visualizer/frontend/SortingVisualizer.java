@@ -2,6 +2,7 @@ package com.sorting.visualizer.frontend;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
@@ -16,16 +17,17 @@ public class SortingVisualizer extends JFrame {
 
   private void initializeFrame() {
     setTitle("Sorting Algorithm Visualizer");
-    setSize(800, 600);
+    setExtendedState(JFrame.MAXIMIZED_BOTH); 
+    setMinimumSize(new Dimension(800,600));
+    //setUndecorated(true);
     setBackground(new Color(224, 224, 224));
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
     setLayout(new BorderLayout());
-    add(new HomePage(), BorderLayout.CENTER);
   }
 
   private void initializeHomePage() {
-    HomePage homePage = new HomePage();
+    HomePage homePage = new HomePage(this);
 
     add(homePage);
   }

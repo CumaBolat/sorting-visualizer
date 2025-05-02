@@ -4,7 +4,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.awt.Dimension;
 
 public class BarChartPanel extends JPanel {
@@ -104,11 +109,18 @@ public class BarChartPanel extends JPanel {
   }
 
   private int[] generateRandomArray(int size) {
-    Random random = new Random();
+    List<Integer> numbers = new ArrayList<>();
+    for (int i = 1; i <= size; i++) {
+      numbers.add(i);
+    }
+
+    Collections.shuffle(numbers, new Random());
+
     int[] arr = new int[size];
     for (int i = 0; i < size; i++) {
-      arr[i] = random.nextInt(size);
+      arr[i] = numbers.get(i);
     }
+
     return arr;
   }
 }

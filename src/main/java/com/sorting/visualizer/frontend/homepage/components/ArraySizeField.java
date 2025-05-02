@@ -13,16 +13,14 @@ public class ArraySizeField extends JTextField {
     setBackground(Color.WHITE);
     setForeground(Color.DARK_GRAY);
     setFont(new Font("SansSerif", Font.PLAIN, 16));
-    
-    //setAlignmentX(CENTER_ALIGNMENT);
-    //setPreferredSize(new Dimension(200, 30));
-    //setMaximumSize(new Dimension(200, 30));
-    //setHorizontalAlignment(JTextField.CENTER);
-    
     setToolTipText("Enter array size (e.g., 50)");
 
     setBorder(BorderFactory.createCompoundBorder(
         BorderFactory.createLineBorder(new Color(180, 180, 180), 1),
         BorderFactory.createEmptyBorder(5, 10, 5, 10)));
+  }
+
+  public int getArraySize() {
+    return Integer.parseInt(getText());
   }
 }

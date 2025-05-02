@@ -13,10 +13,13 @@ import com.sorting.visualizer.frontend.homepage.components.AlgorithmComboBox;
 import com.sorting.visualizer.frontend.homepage.components.AlgorithmLabel;
 import com.sorting.visualizer.frontend.homepage.components.ArraySizeField;
 import com.sorting.visualizer.frontend.homepage.components.ArraySizeLabel;
+import com.sorting.visualizer.frontend.homepage.components.GenerateArrayButton;
 import com.sorting.visualizer.frontend.homepage.components.HomePageHeader;
-import com.sorting.visualizer.frontend.homepage.components.SortButton;
+import com.sorting.visualizer.frontend.homepage.components.GenerateArrayButton;
 
 public class HomePage extends JPanel {
+  private ArraySizeField arraySizeField;
+
   public HomePage() {
     initializeHomePage();
   }
@@ -36,8 +39,10 @@ public class HomePage extends JPanel {
   }
 
   private void addArraySizeSection() {
+    arraySizeField = new ArraySizeField();
+
     add(new ArraySizeLabel(), createConstraints(0, 1));
-    add(new ArraySizeField(), createConstraints(1, 1));
+    add(arraySizeField, createConstraints(1, 1));
   }
 
   private void addAlgorithmSelectionSection() {
@@ -46,7 +51,14 @@ public class HomePage extends JPanel {
   }
 
   private void addStartButton() {
-    add(new SortButton(), createConstraints(0, 3, 2));
+    GenerateArrayButton generateArrayButton = new GenerateArrayButton("Generate Array");
+    generateArrayButton.addGenerateArrayListener(e -> onGenerateButtonClicked());
+    
+    add(generateArrayButton, createConstraints(0, 3, 2));
+  }
+
+  private void onGenerateButtonClicked() {
+    // TODO 
   }
 
   private GridBagConstraints createConstraints(int x, int y) {

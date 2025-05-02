@@ -13,6 +13,7 @@ import com.sorting.visualizer.frontend.homepage.components.AlgorithmComboBox;
 import com.sorting.visualizer.frontend.homepage.components.AlgorithmLabel;
 import com.sorting.visualizer.frontend.homepage.components.ArraySizeField;
 import com.sorting.visualizer.frontend.homepage.components.ArraySizeLabel;
+import com.sorting.visualizer.frontend.homepage.components.HomePageHeader;
 import com.sorting.visualizer.frontend.homepage.components.SortButton;
 
 public class HomePage extends JPanel {
@@ -31,11 +32,7 @@ public class HomePage extends JPanel {
   }
 
   private void addHeader() {
-    JLabel titleLabel = new JLabel("Sorting Algorithm Visualizer", JLabel.CENTER);
-    titleLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
-    titleLabel.setForeground(new Color(40, 40, 40));
-
-    add(titleLabel, createConstraints(0, 0, 2));
+    add(new HomePageHeader(), createConstraints(0, 0, 2));
   }
 
   private void addArraySizeSection() {

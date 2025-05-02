@@ -1,12 +1,28 @@
 package com.sorting.visualizer.frontend.homepage.components;
 
-import javax.swing.JTextArea;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 
-public class ArraySizeField extends JTextArea {
+import javax.swing.BorderFactory;
+import javax.swing.JTextField;
+
+public class ArraySizeField extends JTextField {
+
   public ArraySizeField() {
-    setName("Please Enter the Data Size");
+    setBackground(Color.WHITE);
+    setForeground(Color.DARK_GRAY);
+    setFont(new Font("SansSerif", Font.PLAIN, 16));
+    
+    //setAlignmentX(CENTER_ALIGNMENT);
+    //setPreferredSize(new Dimension(200, 30));
+    //setMaximumSize(new Dimension(200, 30));
+    //setHorizontalAlignment(JTextField.CENTER);
+    
+    setToolTipText("Enter array size (e.g., 50)");
 
-    setText("Please Enter the Data Size");
-
+    setBorder(BorderFactory.createCompoundBorder(
+        BorderFactory.createLineBorder(new Color(180, 180, 180), 1),
+        BorderFactory.createEmptyBorder(5, 10, 5, 10)));
   }
 }

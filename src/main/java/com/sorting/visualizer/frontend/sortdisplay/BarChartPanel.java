@@ -19,22 +19,25 @@ public class BarChartPanel extends JPanel {
   private Color highlightColor = Color.RED;
   private int highlightIndex = -1;
 
-  private final int BAR_WIDTH;
-  private final int BAR_SPACING = 1;
+  private int barWidth;
+  private final int BAR_SPACING = 0;
 
   private JFrame parentFrame;
 
   public BarChartPanel(int size, JFrame parentFrame) {
     this.data = generateRandomArray(size);
-    this.BAR_WIDTH = calculateBarWidth(size);
     this.parentFrame = parentFrame;
 
+    setBackground(Color.GRAY);
     setPreferredSize(new Dimension(750, 360)); // temp
+    barWidth = calculateBarWidth(size);
 
     parentFrame.addComponentListener(new java.awt.event.ComponentAdapter() {
       @Override
       public void componentResized(java.awt.event.ComponentEvent e) {
         setSize(new Dimension(calculateWidth(), calculateHeight()));
+        barWidth = calculateBarWidth(size);
+
         revalidate();
         repaint();
       }
@@ -71,7 +74,7 @@ public class BarChartPanel extends JPanel {
   private int calculateHeight() {
     int totalHeight = parentFrame.getContentPane().getHeight();
 
-    return (int) (totalHeight * 0.6);
+    return (int) (totalHeight * 0.9);
   }
 
   @Override
@@ -82,30 +85,35 @@ public class BarChartPanel extends JPanel {
       return;
     }
 
+    int panelWidth = getWidth();
     int panelHeight = getHeight();
-    int x = BAR_SPACING;
+    int totalBarWidth = (barWidth + BAR_SPACING) * data.length;
+
+    int startX = (panelWidth - totalBarWidth) / 2;
 
     for (int i = 0; i < data.length; i++) {
-      int barHeight = data[i];
+      int barHeight = (int) ((data[i] / (double) data.length) * (panelHeight - 20));
+      int x = startX + i * (barWidth + BAR_SPACING);
       int y = panelHeight - barHeight - 10;
 
-      Color currentColor = (i == highlightIndex) ? highlightColor : barColor;
-      g.setColor(currentColor);
-      g.fillRect(x, y, BAR_WIDTH, barHeight);
-
+      g.setColor(i == highlightIndex ? highlightColor : barColor);
+      g.fillRect(x, y, barWidth, barHeight);
       g.setColor(Color.BLACK);
-      g.drawRect(x, y, BAR_WIDTH, barHeight);
-
-      x += BAR_WIDTH + BAR_SPACING;
+      g.drawRect(x, y, barWidth, barHeight);
     }
   }
 
   private int calculateBarWidth(int size) {
-    return 5;
-  }
+    int panelWidth = calculateWidth();
+    int totalSpacing = (size + 1) * BAR_SPACING;
+    int availableWidth = panelWidth - totalSpacing;
 
-  private int calculateBarHeight(int size) {
-    return 10;
+    int calculatedWidth = availableWidth / size;
+
+    int minBarWidth = 1;
+    int maxBarWidth = 20;
+
+    return Math.max(minBarWidth, Math.min(calculatedWidth, maxBarWidth));
   }
 
   private int[] generateRandomArray(int size) {

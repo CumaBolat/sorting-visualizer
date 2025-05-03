@@ -14,6 +14,8 @@ public class SortDisplay extends JPanel {
   private String algorithm;
   private JFrame parentFrame;
 
+  private BarChartPanel barChartPanel;
+
   public SortDisplay(int arraySize, String algorithm, JFrame parentFrame) {
     this.arraySize = arraySize;
     this.algorithm = algorithm;
@@ -24,8 +26,7 @@ public class SortDisplay extends JPanel {
 
   private void initializeDisplay() {
     setLayout(new GridBagLayout());
-    setBackground(new Color(0, 0, 0));
-    setBackground(Color.GRAY);
+    setBackground(Color.WHITE);
 
     addHeader();
     addBarChartPanel();
@@ -38,13 +39,13 @@ public class SortDisplay extends JPanel {
   }
 
   private void addBarChartPanel() {
-    add(new BarChartPanel(arraySize, parentFrame), createConstraints(0, 1, 2));
+    barChartPanel = new BarChartPanel(arraySize, parentFrame);
+    add(barChartPanel, createConstraints(0, 1, 2));
   }
 
   private void addComponentsPanel() {
     add(new ComponentsPanel(), createConstraints(0, 2, 2));
   }
-
 
   private GridBagConstraints createConstraints(int x, int y) {
     return createConstraints(x, y, 1);
@@ -52,12 +53,13 @@ public class SortDisplay extends JPanel {
 
   private GridBagConstraints createConstraints(int x, int y, int gridWidth) {
     GridBagConstraints gbc = new GridBagConstraints();
-    gbc.fill = GridBagConstraints.HORIZONTAL;
-    gbc.insets = new Insets(10, 20, 10, 20);
     gbc.gridx = x;
     gbc.gridy = y;
     gbc.gridwidth = gridWidth;
-    gbc.weightx = 0.5;
+    gbc.insets = new Insets(10, 20, 10, 20);
+    gbc.weightx = 1.0;
+    gbc.weighty = (y == 0) ? 0 : 1.0;
+    gbc.fill = GridBagConstraints.BOTH;
     return gbc;
   }
 }

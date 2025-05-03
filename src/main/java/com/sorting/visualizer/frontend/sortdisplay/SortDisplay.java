@@ -44,7 +44,7 @@ public class SortDisplay extends JPanel {
   }
 
   private void addComponentsPanel() {
-    add(new ComponentsPanel(), createConstraints(0, 2, 2));
+    add(new ComponentsPanel(parentFrame), createConstraints(0, 2, 2));
   }
 
   private GridBagConstraints createConstraints(int x, int y) {

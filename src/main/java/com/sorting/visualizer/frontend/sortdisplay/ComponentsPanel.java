@@ -5,14 +5,20 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.sorting.visualizer.frontend.sortdisplay.components.ReturnButton;
 import com.sorting.visualizer.frontend.sortdisplay.components.SortButton;
 
 public class ComponentsPanel extends JPanel {
+  private JFrame parentFrame;
   private SortButton sortButton;
+  private ReturnButton returnButton;
 
-  public ComponentsPanel() {
+  public ComponentsPanel(JFrame parentFrame) {
+    this.parentFrame = parentFrame;
+    
     setLayout(new GridBagLayout());
     setBackground(Color.LIGHT_GRAY);
 
@@ -20,13 +26,20 @@ public class ComponentsPanel extends JPanel {
   }
 
   private void initializeComponents() {
+    addReturnButton();
     addSortButton();
+  }
+
+  private void addReturnButton() {
+    returnButton = new ReturnButton(parentFrame);
+
+    add(returnButton, createConstraints(0, 0));
   }
 
   private void addSortButton() {
     sortButton = new SortButton();
 
-    add(sortButton, createConstraints(0, 0));
+    add(sortButton, createConstraints(0, 1));
   }
 
 

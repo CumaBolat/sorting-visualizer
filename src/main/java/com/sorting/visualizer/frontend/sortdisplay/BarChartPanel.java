@@ -15,7 +15,7 @@ import java.awt.Dimension;
 public class BarChartPanel extends JPanel {
 
   private int[] data;
-  private Color barColor = Color.BLUE;
+  private Color barColor = Color.BLACK;
   private Color highlightColor = Color.RED;
   private int highlightIndex = -1;
 

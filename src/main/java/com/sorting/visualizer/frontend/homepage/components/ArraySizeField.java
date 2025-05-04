@@ -9,6 +9,10 @@ import javax.swing.JTextField;
 public class ArraySizeField extends JTextField {
 
   public ArraySizeField() {
+    initializeArraySizeField(); 
+  }
+
+  private void initializeArraySizeField() {
     setBackground(Color.WHITE);
     setForeground(Color.DARK_GRAY);
     setFont(new Font("SansSerif", Font.PLAIN, 16));

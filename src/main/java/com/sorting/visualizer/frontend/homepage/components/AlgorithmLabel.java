@@ -5,8 +5,14 @@ import java.awt.Font;
 import javax.swing.JLabel;
 
 public class AlgorithmLabel extends JLabel{
+  private final String ALGORITHM_LABEL_TEXT = "Please Choose the Algorithm You Want to Visualize";
+  
   public AlgorithmLabel() {
-    setText("Please Choose the Algorithm You Want to Visualize");
+    initializeAlgorithmLable();    
+  }
+
+  private void initializeAlgorithmLable() {
+    setText(ALGORITHM_LABEL_TEXT);
     setFont(new Font("SansSerif", Font.PLAIN, 16));
   }
 }

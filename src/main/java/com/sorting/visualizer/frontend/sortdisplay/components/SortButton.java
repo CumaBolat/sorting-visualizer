@@ -21,6 +21,10 @@ public class SortButton extends JButton {
     this.array = array;
     this.algorithm = algorithm;
 
+    initializeSortButton();
+  }
+
+  private void initializeSortButton() {
     setText("SORT");
     setForeground(Color.WHITE);
     setBackground(Color.BLACK);

@@ -34,6 +34,10 @@ public class HomePage extends JPanel {
     setLayout(new GridBagLayout());
     setBackground(Color.WHITE);
 
+    addComponents();
+  }
+
+  private void addComponents() {
     addHeader();
     addArraySizeSection();
     addAlgorithmSelectionSection();
@@ -59,7 +63,7 @@ public class HomePage extends JPanel {
   }
 
   private void addStartButton() {
-    GenerateArrayButton generateArrayButton = new GenerateArrayButton("Generate Array");
+    GenerateArrayButton generateArrayButton = new GenerateArrayButton();
     generateArrayButton.addGenerateArrayListener(e -> onGenerateButtonClicked());
 
     add(generateArrayButton, createConstraints(0, 3, 2));

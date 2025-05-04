@@ -25,6 +25,10 @@ public class BarChartPanel extends JPanel {
     this.size = data.length;
     this.parentFrame = parentFrame;
 
+    initializeBarChartPanel();
+  }
+
+  private void initializeBarChartPanel() {
     setBackground(Color.GRAY);
     setPreferredSize(new Dimension(750, 360)); // temp
     barWidth = calculateBarWidth(size);

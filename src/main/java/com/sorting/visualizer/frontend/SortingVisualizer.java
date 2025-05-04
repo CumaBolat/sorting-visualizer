@@ -19,7 +19,6 @@ public class SortingVisualizer extends JFrame {
     setTitle("Sorting Algorithm Visualizer");
     setExtendedState(JFrame.MAXIMIZED_BOTH); 
     setMinimumSize(new Dimension(800,600));
-    //setUndecorated(true);
     setBackground(new Color(224, 224, 224));
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);

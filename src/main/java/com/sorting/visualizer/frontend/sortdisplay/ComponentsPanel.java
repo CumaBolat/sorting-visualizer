@@ -26,16 +26,19 @@ public class ComponentsPanel extends JPanel {
     this.barChartPanel = barChartPanel;
     this.array = array;
     this.algorithm = algorithm;
-    
-    setLayout(new GridBagLayout());
-    setBackground(Color.LIGHT_GRAY);
-
-    setPreferredSize(new Dimension(750, 120)); // temp
 
     initializeComponents();
   }
 
   private void initializeComponents() {
+    setLayout(new GridBagLayout());
+    setBackground(Color.LIGHT_GRAY);
+    setPreferredSize(new Dimension(750, 120)); // temp
+
+    addComponents();
+  }
+
+  private void addComponents() {
     addReturnButton();
     addSortButton();
   }

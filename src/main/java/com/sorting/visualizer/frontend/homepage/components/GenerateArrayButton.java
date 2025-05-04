@@ -6,8 +6,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 public class GenerateArrayButton extends JButton {
-  public GenerateArrayButton(String text) {
-    setText(text);
+  private final String GENERATE_ARRAY = "Generate Array";
+  
+  public GenerateArrayButton() {
+    initializeGenerateArrayButton();  
+  }
+
+  private void initializeGenerateArrayButton() {
+    setText(GENERATE_ARRAY);
     setFont(new Font("SansSerif", Font.BOLD, 14));
   }
 

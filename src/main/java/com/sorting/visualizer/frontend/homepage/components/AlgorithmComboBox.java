@@ -4,6 +4,10 @@ import javax.swing.JComboBox;
 
 public class AlgorithmComboBox extends JComboBox<String> {
   public AlgorithmComboBox() {
+    initializeAlgorithmComboBox();
+  }
+
+  private void initializeAlgorithmComboBox() {
     addItem("Merge Sort");
     addItem("Bubble Sort");
   }

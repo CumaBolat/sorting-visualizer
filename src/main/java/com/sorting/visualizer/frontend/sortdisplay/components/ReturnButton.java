@@ -10,13 +10,19 @@ import javax.swing.SwingUtilities;
 import com.sorting.visualizer.frontend.homepage.HomePage;
 
 public class ReturnButton extends JButton {
+  private final String RETURN_HOME = "Return Home";
+
   private JFrame parentFrame;
   private HomePage homePage;
 
   public ReturnButton(JFrame parentFrame) {
     this.parentFrame = parentFrame;
 
-    setText("Return Home");
+    initializeReturnButton();
+  }
+
+  private void initializeReturnButton() {
+    setText(RETURN_HOME);
     setBackground(Color.BLACK);
     setForeground(Color.WHITE);
 

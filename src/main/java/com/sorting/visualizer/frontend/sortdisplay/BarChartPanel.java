@@ -4,12 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
 import java.awt.Dimension;
 
 public class BarChartPanel extends JPanel {

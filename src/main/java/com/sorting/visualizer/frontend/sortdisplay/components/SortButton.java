@@ -2,7 +2,6 @@ package com.sorting.visualizer.frontend.sortdisplay.components;
 
 import java.awt.Color;
 import java.awt.event.ActionListener;
-import java.net.http.WebSocket.Listener;
 
 import javax.swing.JButton;
 

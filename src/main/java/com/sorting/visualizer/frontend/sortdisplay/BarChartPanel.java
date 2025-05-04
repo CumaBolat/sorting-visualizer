@@ -15,17 +15,20 @@ import java.awt.Dimension;
 public class BarChartPanel extends JPanel {
 
   private int[] data;
+  private int size;
   private Color barColor = Color.BLACK;
   private Color highlightColor = Color.RED;
   private int highlightIndex = -1;
+  private int highlight2Index = -1;
 
   private int barWidth;
   private final int BAR_SPACING = 0;
 
   private JFrame parentFrame;
 
-  public BarChartPanel(int size, JFrame parentFrame) {
-    this.data = generateRandomArray(size);
+  public BarChartPanel(int[] data, JFrame parentFrame) {
+    this.data = data;
+    this.size = data.length;
     this.parentFrame = parentFrame;
 
     setBackground(Color.GRAY);
@@ -50,8 +53,9 @@ public class BarChartPanel extends JPanel {
     repaint();
   }
 
-  public void setHighlight(int index) {
+  public void setHighlight(int index, int index2) {
     this.highlightIndex = index;
+    this.highlight2Index = index2;
     repaint();
   }
 
@@ -74,7 +78,7 @@ public class BarChartPanel extends JPanel {
   private int calculateHeight() {
     int totalHeight = parentFrame.getContentPane().getHeight();
 
-    return (int) (totalHeight * 0.9);
+    return (int) (totalHeight * 0.8);
   }
 
   @Override
@@ -96,7 +100,7 @@ public class BarChartPanel extends JPanel {
       int x = startX + i * (barWidth + BAR_SPACING);
       int y = panelHeight - barHeight - 10;
 
-      g.setColor(i == highlightIndex ? highlightColor : barColor);
+      g.setColor((i == highlightIndex || i == highlight2Index) ? highlightColor : barColor);
       g.fillRect(x, y, barWidth, barHeight);
       g.setColor(Color.BLACK);
       g.drawRect(x, y, barWidth, barHeight);
@@ -114,21 +118,5 @@ public class BarChartPanel extends JPanel {
     int maxBarWidth = 20;
 
     return Math.max(minBarWidth, Math.min(calculatedWidth, maxBarWidth));
-  }
-
-  private int[] generateRandomArray(int size) {
-    List<Integer> numbers = new ArrayList<>();
-    for (int i = 1; i <= size; i++) {
-      numbers.add(i);
-    }
-
-    Collections.shuffle(numbers, new Random());
-
-    int[] arr = new int[size];
-    for (int i = 0; i < size; i++) {
-      arr[i] = numbers.get(i);
-    }
-
-    return arr;
   }
 }

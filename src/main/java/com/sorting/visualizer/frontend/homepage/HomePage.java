@@ -23,6 +23,7 @@ import com.sorting.visualizer.frontend.sortdisplay.SortDisplay;
 public class HomePage extends JPanel {
   private ArraySizeField arraySizeField;
   private SortDisplay sortDisplay;
+  private AlgorithmComboBox algorithmComboBox;
 
   private JFrame parentFrame;
 
@@ -54,8 +55,10 @@ public class HomePage extends JPanel {
   }
 
   private void addAlgorithmSelectionSection() {
+    algorithmComboBox = new AlgorithmComboBox();
+    
     add(new AlgorithmLabel(), createConstraints(0, 2));
-    add(new AlgorithmComboBox(), createConstraints(1, 2));
+    add(algorithmComboBox, createConstraints(1, 2));
   }
 
   private void addStartButton() {
@@ -67,7 +70,9 @@ public class HomePage extends JPanel {
 
   private void onGenerateButtonClicked() {
     int arraySize = arraySizeField.getArraySize();
-    sortDisplay = new SortDisplay(arraySize, "temp", parentFrame);
+    String algorithm = String.valueOf(algorithmComboBox.getSelectedItem());
+    System.out.println("chosen algorithm is: " + algorithm);
+    sortDisplay = new SortDisplay(arraySize, algorithm, parentFrame);
 
     SwingUtilities.invokeLater(() -> {
       parentFrame.getContentPane().removeAll();

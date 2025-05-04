@@ -1,6 +1,7 @@
 package com.sorting.visualizer.frontend.sortdisplay;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -13,14 +14,23 @@ import com.sorting.visualizer.frontend.sortdisplay.components.SortButton;
 
 public class ComponentsPanel extends JPanel {
   private JFrame parentFrame;
+  private BarChartPanel barChartPanel;
   private SortButton sortButton;
   private ReturnButton returnButton;
 
-  public ComponentsPanel(JFrame parentFrame) {
+  private int[] array;
+  private String algorithm;
+
+  public ComponentsPanel(JFrame parentFrame, BarChartPanel barChartPanel, int[] array, String algorithm) {
     this.parentFrame = parentFrame;
+    this.barChartPanel = barChartPanel;
+    this.array = array;
+    this.algorithm = algorithm;
     
     setLayout(new GridBagLayout());
     setBackground(Color.LIGHT_GRAY);
+
+    setPreferredSize(new Dimension(750, 120)); // temp
 
     initializeComponents();
   }
@@ -37,7 +47,7 @@ public class ComponentsPanel extends JPanel {
   }
 
   private void addSortButton() {
-    sortButton = new SortButton();
+    sortButton = new SortButton(barChartPanel, array, algorithm);
 
     add(sortButton, createConstraints(0, 1));
   }

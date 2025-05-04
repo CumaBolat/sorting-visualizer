@@ -6,8 +6,22 @@ import java.net.http.WebSocket.Listener;
 
 import javax.swing.JButton;
 
+import com.sorting.visualizer.backend.Sort;
+import com.sorting.visualizer.frontend.sortdisplay.BarChartPanel;
+
 public class SortButton extends JButton {
-  public SortButton() {
+  private BarChartPanel barChartPanel;
+  
+  private Sort sort = new Sort();
+
+  private int[] array;
+  private String algorithm;
+  
+  public SortButton(BarChartPanel barChartPanel, int[] array, String algorithm) {
+    this.barChartPanel = barChartPanel;
+    this.array = array;
+    this.algorithm = algorithm;
+
     setText("SORT");
     setForeground(Color.WHITE);
     setBackground(Color.BLACK);
@@ -20,6 +34,6 @@ public class SortButton extends JButton {
   }
 
   private void onSortButtonClicked() {
-    System.out.println("Start Sort");
+    sort.sort(barChartPanel, array, algorithm);
   }
 }
